@@ -1,10 +1,13 @@
 
 def getEmailList(S, C):
+    
     if len(S) == 0 or len(C) == 0:
         return "One or more input values missing."
+    
     employees = S.split(",")
     processedEmployees = []
     employeeInfoList = []
+    
     for i in employees:
 
         i = i.strip()
@@ -20,16 +23,14 @@ def getEmailList(S, C):
             middleNameInital = iSplit[1][0]
             lastName = iSplit[2].replace("-", "")[:8]
 
-        employeeInfo = "{} <{}{}{}@{}.com>".format(
-            i, firstInitial, middleNameInital, lastName, C)
+        employeeInfo = f"{i} <{firstInitial}{middleNameInital}{lastName}@{C}.com>"
 
         if employeeInfo not in employeeInfoList:
             employeeInfoList.append(employeeInfo)
             processedEmployees.append(i)
         elif i in processedEmployees:
             repeatedNames = processedEmployees.count(i)
-            employeeInfo = "{} <{}{}{}{}@{}.com>".format(
-                i, firstInitial, middleNameInital, lastName, repeatedNames, C)
+            employeeInfo = f"{i} <{firstInitial}{middleNameInital}{lastName}{repeatedNames}@{C}.com>"
             employeeInfoList.append(employeeInfo)
             processedEmployees.append(i)
 
